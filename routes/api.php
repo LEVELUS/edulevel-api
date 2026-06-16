@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SchoolGradeController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\SubjectLevelController;
 
 // Routes publiques (sans token)
 Route::post('register', [AuthController::class, 'register']);
@@ -24,6 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('subjects', [SubjectController::class, 'index']);
     Route::get('subjects/{id}', [SubjectController::class, 'show']);
 
+    Route::get('subjects/{subjectId}/grades', [SubjectLevelController::class, 'index']);
+
     // Écriture : admins uniquement
     Route::middleware('admin')->group(function () {
         Route::post('school-grades', [SchoolGradeController::class, 'store']);
@@ -33,5 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('subjects', [SubjectController::class, 'store']);
         Route::put('subjects/{id}', [SubjectController::class, 'update']);
         Route::delete('subjects/{id}', [SubjectController::class, 'destroy']);
+
+        Route::post('subjects/{subjectId}/grades', [SubjectLevelController::class, 'store']);
+        Route::delete('subjects/{subjectId}/grades/{gradeId}', [SubjectLevelController::class, 'destroy']);
     });
 });
