@@ -22,6 +22,10 @@ class QuestionController extends Controller
             $query->where('grade_id', $request->grade_id);
         }
 
+        if ($request->filled('series_id')) {
+            $query->where('series_id', $request->series_id);
+        }
+
         return QuestionResource::collection($query->get());
     }
 

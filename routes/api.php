@@ -7,6 +7,7 @@ use App\Http\Controllers\SchoolGradeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectLevelController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SeriesController;
 
 // Routes publiques (sans token)
 Route::post('register', [AuthController::class, 'register']);
@@ -31,6 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('questions', [QuestionController::class, 'index']);
     Route::get('questions/{id}', [QuestionController::class, 'show']);
 
+    Route::get('school-grades/{gradeId}/series', [SeriesController::class, 'index']);
+
     // Écriture : admins uniquement
     Route::middleware('admin')->group(function () {
         Route::post('school-grades', [SchoolGradeController::class, 'store']);
@@ -47,5 +50,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('questions', [QuestionController::class, 'store']);
         Route::put('questions/{id}', [QuestionController::class, 'update']);
         Route::delete('questions/{id}', [QuestionController::class, 'destroy']);
+
+        Route::post('school-grades/{gradeId}/series', [SeriesController::class, 'store']);
+        Route::put('series/{id}', [SeriesController::class, 'update']);
+        Route::delete('series/{id}', [SeriesController::class, 'destroy']);
     });
 });

@@ -13,6 +13,7 @@ class QuestionResource extends JsonResource
             'id'            => $this->question_id,
             'subject_id'    => $this->subject_id,
             'grade_id'      => $this->grade_id,
+            'series_id'     => $this->series_id,
             'content'       => $this->content,
             'question_type' => $this->question_type,
             'difficulty'    => $this->difficulty,

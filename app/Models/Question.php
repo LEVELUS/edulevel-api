@@ -14,6 +14,7 @@ class Question extends Model
     protected $fillable = [
         'subject_id',
         'grade_id',
+        'series_id',
         'content',
         'question_type',
         'difficulty',
@@ -28,5 +29,10 @@ class Question extends Model
     public function grade(): BelongsTo
     {
         return $this->belongsTo(SchoolGrade::class, 'grade_id', 'grade_id');
+    }
+
+    public function series(): BelongsTo
+    {
+        return $this->belongsTo(Series::class, 'series_id', 'series_id');
     }
 }
