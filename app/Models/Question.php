@@ -19,6 +19,7 @@ class Question extends Model
         'question_type',
         'difficulty',
         'points',
+        'annee'
     ];
 
     public function subject(): BelongsTo

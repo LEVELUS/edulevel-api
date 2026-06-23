@@ -27,6 +27,7 @@ class StoreQuestionRequest extends FormRequest
             'question_type' => 'sometimes|in:mcq,single_choice,true_false,open',
             'difficulty'    => 'sometimes|in:easy,medium,hard',
             'points'        => 'sometimes|integer|min:1',
+             'annee' => ['nullable', 'integer', 'between:1900,' . date('Y')],
         ];
     }
 }
